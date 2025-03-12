@@ -54,6 +54,30 @@ function Section({children, title}: SectionProps): React.JSX.Element {
   );
 }
 
+function ProblematicBehavior(): React.JSX.Element {
+  return (
+    <View style={problematicStyles.group}>
+      <View style={problematicStyles.wrapper}>
+        <View style={problematicStyles.alignEnd}>
+          <Text>flex-end</Text>
+        </View>
+        <View style={problematicStyles.alignCenter}>
+          <Text>center</Text>
+        </View>
+        <View style={problematicStyles.alignStart}>
+          <Text>flex-start</Text>
+        </View>
+        <View>
+          <Text>loooooooooooooooooooooooooooooooooong</Text>
+        </View>
+        <View style={problematicStyles.alignEnd}>
+          <Text>flex-end</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -93,6 +117,9 @@ function App(): React.JSX.Element {
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
+
+          <ProblematicBehavior/>
+
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
@@ -108,6 +135,40 @@ function App(): React.JSX.Element {
     </View>
   );
 }
+
+const problematicStyles = StyleSheet.create({
+  group: {
+    backgroundColor: "red",
+    minWidth: 0,
+    minHeight: 100,
+    maxHeight: 150,
+    width: "100%",
+    height: "100%",
+  },
+  wrapper: {
+    height: "100%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignContent: "stretch",
+    alignItems: "stretch",
+    justifyContent: "flex-start",
+    rowGap: 10,
+    columnGap: 20,
+    backgroundColor: 'green'
+  },
+  alignEnd: {
+    alignSelf: "flex-end",
+    backgroundColor: "purple"
+  },
+  alignCenter: {
+    alignSelf: "center",
+    backgroundColor: "purple"
+  },
+  alignStart: {
+    alignSelf: "flex-start",
+    backgroundColor: "purple"
+  }
+})
 
 const styles = StyleSheet.create({
   sectionContainer: {
